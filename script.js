@@ -1,13 +1,15 @@
 (() => {
   'use strict';
-  const PHONE = '923116066666';
+  const PHONE = '923005833244'; 
   const MSG = 'Assalam-o-Alaikum, I would like to know more about Mardan Enclave.';
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
-  // WhatsApp links
+  // WhatsApp links — each link may carry its own message in data-wa-text
+  // (the plot cards do); otherwise the default message is used.
   $$('.wa').forEach(a => {
-    a.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(MSG)}`;
+    const text = a.dataset.waText || MSG;
+    a.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
     a.target = '_blank';
     a.rel = 'noopener';
   });
